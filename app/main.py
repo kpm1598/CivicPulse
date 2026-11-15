@@ -40,6 +40,18 @@ from app.services.priority import calculate_priority  # noqa: E402
 
 app = FastAPI(title="CivicPulse")
 
+# --- CORS: the web pages are same-origin (no CORS needed), but the Capacitor
+# mobile apps run on https://localhost inside the WebView and call this API
+# cross-origin. Demo scope: allow all origins; tighten before production use.
+from fastapi.middleware.cors import CORSMiddleware  # noqa: E402
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 
 def now_iso() -> str:
     return datetime.now(timezone.utc).isoformat()
