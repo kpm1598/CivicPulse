@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CivicPulse - Authority Dashboard</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+<header class="site">
+  <div class="logo">🏙️ Civic<span>Pulse</span> <small style="font-size:13px">Authority</small></div>
+  <nav><a href="/">Citizen</a><a href="/authority">Authority Dashboard</a></nav>
+</header>
+<main>
+  <section class="card">
+    <h1>Authority dashboard</h1>
+    <label>Admin key (demo default: admin123 - stored only in this browser)</label>
+    <div class="row">
+      <div><input id="adminKey" type="password" placeholder="Enter admin key to make changes"></div>
+      <div><button id="saveKeyBtn" class="secondary">Save key</button></div>
+    </div>
+    <div id="dashMsg" class="msg"></div>
+    <div class="grid" style="margin-top:14px">
+      <div class="stat">Total reports<b id="statTotal">-</b></div>
+      <div class="stat">Open<b id="statOpen">-</b></div>
+      <div class="stat">Resolved<b id="statResolved">-</b></div>
+      <div class="stat" style="background:var(--critical)">Critical<b id="statCritical">-</b></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Analytics</h2>
+    <div class="row">
+      <div><h3>By category</h3><canvas id="chartCategory"></canvas></div>
+      <div><h3>By status</h3><canvas id="chartStatus"></canvas></div>
+    </div>
+    <div><h3>By priority tier</h3><canvas id="chartPriority"></canvas></div>
+  </section>
+
+  <section class="card">
+    <h2>Hotspots</h2>
+    <div id="hotspotMap"></div>
+    <div id="hotspotList"></div>
+  </section>
+
+  <section class="card">
+    <h2>Reports</h2>
+    <div class="row">
+      <div><label>Filter by category</label>
+        <select id="filterCategory"><option value="">All</option><option>pothole</option><option>garbage</option><option>streetlight</option><option>water_leakage</option><option>drainage</option><option>other</option></select></div>
+      <div><label>Filter by status</label>
+        <select id="filterStatus"><option value="">All</option><option>Reported</option><option>Assigned</option><option>In Progress</option><option>Resolved</option></select></div>
+    </div>
+    <div style="overflow-x:auto"><table>
+      <thead><tr><th>Code</th><th>Issue</th><th>Category</th><th>Locality</th><th>Priority</th><th>Status</th><th>Assigned to</th></tr></thead>
+      <tbody id="reportsBody"></tbody>
+    </table></div>
+  </section>
+
+  <section class="card" id="editPanel" style="display:none">
+    <h2>Update report <span id="editCode"></span></h2>
+    <div class="row">
+      <div><label>Status</label>
+        <select id="editStatus"><option>Reported</option><option>Assigned</option><option>In Progress</option><option>Resolved</option></select></div>
+      <div><label>Assigned to</label><input id="editAssigned" placeholder="e.g. Ramesh K."></div>
+    </div>
+    <div class="row">
+      <div><label>Department</label>
+        <select id="editDept"><option>Roads & Infrastructure</option><option>Sanitation</option><option>Electricity</option><option>Water Supply</option><option>Drainage & Sewage</option><option>General Admin</option></select></div>
+      <div><label>Note</label><input id="editNote" placeholder="Optional note for the timeline"></div>
+    </div>
+    <p><button id="editSaveBtn">Save changes</button></p>
+    <div id="editMsg" class="msg"></div>
+  </section>
+</main>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script src="/static/js/common.js"></script>
+<script src="/static/js/authority.js"></script>
+</body>
+</html>

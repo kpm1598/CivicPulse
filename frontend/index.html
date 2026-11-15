@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CivicPulse - Report a Civic Issue</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+<header class="site">
+  <div class="logo">🏙️ Civic<span>Pulse</span></div>
+  <nav><a href="/">Citizen</a><a href="/authority">Authority Dashboard</a></nav>
+</header>
+<main>
+  <!-- ================= REPORT FORM ================= -->
+  <section class="card">
+    <h1>Report a civic issue</h1>
+    <p class="small">Pothole, garbage, streetlight, water leakage, drainage - describe it, pin it on the map, done. You get a complaint code to track it.</p>
+    <div id="formMsg" class="msg"></div>
+    <form id="reportForm">
+      <label>What is the problem? *</label>
+      <textarea id="description" required placeholder="Example: Huge pothole near the bus stop, dangerous for bikes"></textarea>
+      <div class="row">
+        <div><label>Locality / area</label><input id="locality" placeholder="e.g. Koramangala"></div>
+        <div><label>Photo (optional, max 5 MB)</label><input id="photo" type="file" accept="image/*"></div>
+      </div>
+      <div class="row">
+        <div><label>Your name (optional)</label><input id="name"></div>
+        <div><label>Your phone (optional)</label><input id="phone"></div>
+      </div>
+      <label>Location - click the map to drop a pin</label>
+      <div id="map"></div>
+      <div class="row">
+        <div><label>Latitude</label><input id="lat" type="number" step="any" placeholder="12.9716"></div>
+        <div><label>Longitude</label><input id="lng" type="number" step="any" placeholder="77.5946"></div>
+      </div>
+      <p><button type="button" class="secondary" id="locateBtn">📍 Use my location</button>
+         <button type="submit" id="submitBtn">Submit report</button></p>
+    </form>
+    <div id="successPanel" class="msg success" style="display:none"></div>
+  </section>
+
+  <!-- ================= NEARBY ISSUES ================= -->
+  <section class="card">
+    <h2>Issues on the map</h2>
+    <div id="nearbyMap"></div>
+    <div id="issueList"></div>
+  </section>
+
+  <!-- ================= TRACK ================= -->
+  <section class="card">
+    <h2>Track your complaint</h2>
+    <div class="row">
+      <div><input id="trackCode" placeholder="Enter code, e.g. CP-0001"></div>
+      <div><button id="trackBtn">Track</button></div>
+    </div>
+    <div id="trackMsg" class="msg"></div>
+    <div id="trackResult"></div>
+  </section>
+</main>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="/static/js/common.js"></script>
+<script src="/static/js/citizen.js"></script>
+</body>
+</html>
