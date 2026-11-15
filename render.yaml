@@ -1,0 +1,15 @@
+# Render free-tier deployment for the CivicPulse demo.
+# On Render: New > Blueprint > connect the kpm1598/CivicPulse repo > Apply.
+# Free web services sleep when idle and have an ephemeral disk, so the demo
+# database is re-seeded on every start (seed_demo.py loads 18 Bengaluru reports).
+services:
+  - type: web
+    name: civicpulse
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python seed_demo.py && uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /api/health
+    envVars:
+      - key: ADMIN_KEY
+        value: admin123
