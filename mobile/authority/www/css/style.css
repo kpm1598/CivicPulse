@@ -1,0 +1,42 @@
+/* CivicPulse shared styles - change colours here (CSS variables below). */
+:root{
+  --brand:#0b6e4f; --brand-dark:#084c37; --accent:#ffb703;
+  --bg:#f4f7f5; --card:#ffffff; --text:#1d2a24; --muted:#63756c;
+  --critical:#d62828; --high:#f77f00; --medium:#e9c400; --low:#2a9d8f;
+  --radius:12px;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Segoe UI,system-ui,Arial,sans-serif;background:var(--bg);color:var(--text)}
+header.site{background:var(--brand-dark);color:#fff;padding:14px 20px;display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
+header.site .logo{font-size:22px;font-weight:700}
+header.site .logo span{color:var(--accent)}
+nav a{color:#fff;text-decoration:none;margin-left:16px;font-weight:600}
+nav a:hover{text-decoration:underline}
+main{max-width:1100px;margin:0 auto;padding:18px}
+.card{background:var(--card);border-radius:var(--radius);padding:18px;margin-bottom:18px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+h1,h2{margin-top:0}
+label{display:block;font-weight:600;margin:10px 0 4px}
+input,select,textarea{width:100%;padding:10px;border:1px solid #c8d4cd;border-radius:8px;font:inherit}
+textarea{min-height:90px}
+button{background:var(--brand);color:#fff;border:0;padding:11px 18px;border-radius:8px;font-weight:700;cursor:pointer}
+button:hover{background:var(--brand-dark)}
+button.secondary{background:#e7efeb;color:var(--text)}
+#map,#nearbyMap,#hotspotMap{height:320px;border-radius:8px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+.stat{background:var(--brand);color:#fff;border-radius:var(--radius);padding:16px}
+.stat b{font-size:28px;display:block}
+.badge{display:inline-block;padding:2px 10px;border-radius:20px;color:#fff;font-size:12px;font-weight:700}
+.badge.Critical{background:var(--critical)} .badge.High{background:var(--high)}
+.badge.Medium{background:var(--medium);color:#333} .badge.Low{background:var(--low)}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{padding:8px;border-bottom:1px solid #e3eae6;text-align:left}
+tr.clickable{cursor:pointer} tr.clickable:hover{background:#eef5f1}
+.msg{padding:12px;border-radius:8px;margin:10px 0;display:none}
+.msg.error{display:block;background:#fde8e8;color:#8c1d1d}
+.msg.success{display:block;background:#e2f4e8;color:#14532d}
+.timeline{border-left:3px solid var(--brand);padding-left:16px}
+.timeline div{margin-bottom:10px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:700px){.row{grid-template-columns:1fr} #map,#nearbyMap,#hotspotMap{height:260px}}
+canvas{max-height:260px}
+.small{color:var(--muted);font-size:13px}

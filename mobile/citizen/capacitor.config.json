@@ -1,0 +1,6 @@
+{
+  "appId": "com.kasim.civicpulse.citizen",
+  "appName": "CivicPulse Citizen",
+  "webDir": "www",
+  "server": { "androidScheme": "https" }
+}
